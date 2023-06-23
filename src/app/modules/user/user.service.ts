@@ -1,9 +1,10 @@
 import config from '../../../config'
+import { IGenericResponse } from '../../../interfaces/common'
 import { IUser } from './user.interface'
 import { User } from './user.model'
 import { generateUserId } from './user.utility'
 
-export const createUser = async (user: IUser): Promise<IUser | null> => {
+const createUser = async (user: IUser): Promise<IUser | null> => {
   // id generate
   const id = await generateUserId()
   user.id = id
@@ -21,6 +22,23 @@ export const createUser = async (user: IUser): Promise<IUser | null> => {
   return createUser
 }
 
+const getAllUser = async (): Promise<IGenericResponse<IUser[]>> => {
+  const result = await User.find()
+  const total = result.length
+  // IgenericResponse
+  return {
+    meta: {
+      total,
+    },
+    data: result,
+  }
+}
+const getSingleUser = async (id: string): Promise<IUser | null> => {
+  const result = await User.findOne({ _id: id })
+  return result
+}
 export default {
   createUser,
+  getAllUser,
+  getSingleUser,
 }
