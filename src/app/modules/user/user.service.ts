@@ -4,6 +4,16 @@ import { IUser } from './user.interface'
 import { User } from './user.model'
 import { generateUserId } from './user.utility'
 
+const updateUser = async (
+  id: string,
+  payload: Partial<IUser>
+): Promise<IUser | null> => {
+  const result = await User.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  })
+  return result
+}
+
 const createUser = async (user: IUser): Promise<IUser | null> => {
   // id generate
   const id = await generateUserId()
@@ -46,4 +56,5 @@ export default {
   getAllUser,
   getSingleUser,
   deleteUser,
+  updateUser,
 }

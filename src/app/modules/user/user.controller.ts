@@ -67,9 +67,30 @@ const getAllUser = async (req: Request, res: Response) => {
   }
 }
 
+const updateUser = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id
+    const updatedData = req.body
+    const result = await userService.updateUser(id, updatedData)
+
+    // const result = await userService.updateUser(id, updatedData)
+    res.status(400).json({
+      success: true,
+      message: 'User update successfully',
+      data: result,
+    })
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: 'Failed to update user',
+    })
+  }
+}
+
 export default {
   createUser,
   getAllUser,
   getSingleUser,
   deleteUser,
+  updateUser,
 }
