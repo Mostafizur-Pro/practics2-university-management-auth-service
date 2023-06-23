@@ -34,6 +34,22 @@ const getSingleUser = async (req: Request, res: Response) => {
     })
   }
 }
+const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id
+    const result = await userService.deleteUser(id)
+    res.status(400).json({
+      success: true,
+      message: 'User delete successfully',
+      data: result,
+    })
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: 'Failed to delete user',
+    })
+  }
+}
 
 const getAllUser = async (req: Request, res: Response) => {
   try {
@@ -55,4 +71,5 @@ export default {
   createUser,
   getAllUser,
   getSingleUser,
+  deleteUser,
 }

@@ -37,8 +37,13 @@ const getSingleUser = async (id: string): Promise<IUser | null> => {
   const result = await User.findOne({ _id: id })
   return result
 }
+const deleteUser = async (id: string): Promise<IUser | null> => {
+  const result = await User.findByIdAndDelete({ _id: id })
+  return result
+}
 export default {
   createUser,
   getAllUser,
   getSingleUser,
+  deleteUser,
 }
