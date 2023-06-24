@@ -1,16 +1,11 @@
 import { z } from 'zod'
 
-const updateUserZodSchema = z.object({
+const createUserZodSchema = z.object({
   body: z.object({
-    role: z.string({
-      required_error: 'Role is required',
-    }),
-    password: z.string({
-      required_error: 'Password is required',
-    }),
+    role: z.string(),
   }),
 })
 
 export const UserValidation = {
-  updateUserZodSchema,
+  createUserZodSchema,
 }

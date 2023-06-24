@@ -16,7 +16,7 @@ router.delete('/:id', userController.deleteUser)
 // )
 router.patch(
   '/:id',
-  validateRequest(UserValidation.updateUserZodSchema),
+  validateRequest(UserValidation.createUserZodSchema),
   userController.updateUser
 )
 

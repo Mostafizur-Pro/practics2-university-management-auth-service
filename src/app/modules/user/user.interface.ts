@@ -1,4 +1,4 @@
-import { Types } from 'mongoose'
+import { Model } from 'mongoose'
 
 export type IUser = {
   id: string
@@ -6,3 +6,6 @@ export type IUser = {
   password: string
   //   student?: Types.ObjectId | IStudent
 }
+
+// model
+export type UserModel = Model<IUser, object>
